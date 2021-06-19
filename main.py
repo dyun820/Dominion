@@ -32,6 +32,32 @@ province = province_temp.subsample(3)
 province_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\colony.png")
 colony = province_temp.subsample(3)
 
+totalduchy1 = 0
+
+class Victory:
+  def __init__(self, name, value, cost, total_duchy):
+    self.name = name
+    self.value = value
+    self.cost = cost
+    self.total_duchy = total_duchy
+  def total():
+  	global totalduchy1
+  	totalduchy1 = totalduchy1 + 1
+
+
+p1 = Victory("Estate", 1, 2, 0)
+p2 = Victory("Duchy", 3, 5, totalduchy1)
+
+print(p1.name)
+print(p1.value)
+print(p1.cost)
+print(p2.name)
+print(p2.value)
+print(p2.cost)
+print(p2.total_duchy)
+
+
+
 total_duchy = 0
 
 counter = tkinter.IntVar()
@@ -64,7 +90,7 @@ def onClick10():
 
 counter_1 = Label(root, textvariable = counter, font = 'size, 80')
 counter_2 = Label(root, textvariable = counter2, font = 'size, 80', bg = "#FCF3CF")
-root.wm_attributes("-transparentcolor", "#FCF3CF")
+root.wm_attributes("-transparent", "#FCF3CF")
 counter_1.place(x=435, y = 200)
 counter_2.place(x=1485, y = 200)
 
@@ -94,5 +120,7 @@ Button_colony2.place(x=1780, y=800)
 
 can = Canvas(root, bg = 'black', height = 1080, width = 1)
 can.place(relx = 0.5, rely = 0.5, anchor = CENTER)
+
+onClickduke()
 
 root.mainloop()
