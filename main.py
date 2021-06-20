@@ -47,6 +47,8 @@ class Victory:
 
 p1 = Victory("Estate", 1, 2, 0)
 p2 = Victory("Duchy", 3, 5, totalduchy1)
+p1 = Victory("Province", 6, 8, 0)
+p1 = Victory("Colony", 10, 11, 0)
 
 print(p1.name)
 print(p1.value)
