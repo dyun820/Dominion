@@ -16,17 +16,17 @@ totalduchy1 = 0
 counter = tkinter.IntVar()
 counter2 = tkinter.IntVar()
 
-estate_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\estate.png")
+estate_temp = PhotoImage(file = r"Images\estate.png")
 estate = estate_temp.subsample(3)
-curse_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\curse.png")
+curse_temp = PhotoImage(file = r"Images\curse.png")
 curse = curse_temp.subsample(3)
-duchy_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\duchy.png")
+duchy_temp = PhotoImage(file = r"Images\duchy.png")
 duchy = duchy_temp.subsample(3)
-duke_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\duke.png")
+duke_temp = PhotoImage(file = r"Images\duke.png")
 duke = duke_temp.subsample(3)
-province_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\province.png")
+province_temp = PhotoImage(file = r"Images\province.png")
 province = province_temp.subsample(3)
-province_temp = PhotoImage(file = r"C:\Users\Derek\Desktop\DominionVictory\colony.png")
+province_temp = PhotoImage(file = r"Images\colony.png")
 colony = province_temp.subsample(3)
 
 # Cards
