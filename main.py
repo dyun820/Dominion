@@ -71,8 +71,10 @@ province = province_temp.subsample(3)
 province_temp = PhotoImage(file = r"Images\colony.png")
 colony = province_temp.subsample(3)
 
-# Cards
-silver_card = Victory("Silver", -1, 0)
+# Non Victory Cards
+silver_card = NonVictory("Silver", 0, 0)
+
+# Victory Cards
 curse_card = Victory("Curse", -1, 0)
 estate_card = Victory("Estate", 1, 2)
 great_hall_card = Victory("Great Hall", 1, 3)

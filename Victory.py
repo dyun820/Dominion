@@ -3,3 +3,9 @@ class Victory:
     self.name = name
     self.value = value
     self.cost = cost
+
+class NonVictory:
+  def __innit__(self, name, value, cost):
+    self.name = name
+    self.value = value
+    self.cost = cost
