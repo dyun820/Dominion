@@ -1,8 +1,8 @@
 from tkinter import *
 import tkinter
 from tkinter import Tk, Canvas
-from Victory import Victory
-from Non_Victory import NonVictory
+from victory import Victory
+from non_victory import NonVictory
 import math
 
 root = Tk()
@@ -20,6 +20,10 @@ feodum_count = 0
 feodum_count2 = 0
 totalduchy1 = 0
 totalduchy2 = 0
+total_cards = 0
+total_cards2 = 0
+total_non_victory = 0
+total_non_victory2 = 0
 total_victory = 0
 total_victory2 = 0
 silk_road_count = 0
@@ -98,7 +102,7 @@ castle1_card = Victory("Castle 1", 1, 3)
 castle1_2_card = Victory("Castle 1", 1, 3)
 fairgrounds_card = Victory("Fairgrounds", 2, 5)
 distant_lands_card = Victory("Distant Lands", 4, 5)
-gardens_card = Victory("Gardens", 1, 4)
+gardens_card = Victory("Gardens", total_non_victory, 4)
 cemetery_card = Victory("Cemetery", 2, 4)
 tunnel_card = Victory("Tunnel", 2, 5)
 farmland_card = Victory("Farmland", 2, 6)
@@ -118,21 +122,26 @@ def nvClick(nonvictory):
     global total_silver
     global feodum_count
     global total_victory
+    global total_non_victory
     if nonvictory.name == 'Silver':
         total_silver += 1
         feodum_count = math.floor(total_silver / 3)
     if nonvictory.name == 'Card Back':
-        total_victory
+        total_non_victory += 1
 def onClick(victory):
     global totalduchy1
     global total_victory
     global silk_road_count
+    global total_cards
     counter.set(counter.get() + victory.value)
     if victory.name == 'Feodum':
         counter.set(counter.get() + feodum_count)
     if victory.value >= 0:
         silk_road_count += 1
         total_victory = math.floor(silk_road_count / 4)
+    if victory.name == 'Gardens':
+        total_cards = math.floor((total_victory+total_non_victory)/5)
+        counter.set(counter.get() + total_cards)
     if victory.name == 'Silk Road':
         counter.set(counter.get() + total_victory)
     if victory.name == 'Duchy':
@@ -143,18 +152,19 @@ def onClick(victory):
 def nvClickP2(nonvictory):
     global total_silver2
     global feodum_count2
+    global total_non_victory2
     if nonvictory.name == 'Silver':
         total_silver2 += 1
         feodum_count2 = math.floor(total_silver2 / 3)
     if nonvictory.name == 'Card Back':
-        total
+        total_non_victory2 += 1
 def onClickP2(victory):
     global totalduchy2
     global total_victory2
     global feodum_count2
     global total_silver2
     global silk_road_count2
-    counter2.set(counter2.get() + victory.value)
+    counter2.set(counter2.get() + victory.value + total_non_victory2)
     if victory.name == 'Feodum':
         counter2.set(counter2.get() + feodum_count2)
     if victory.value >= 0:
