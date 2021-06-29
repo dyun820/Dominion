@@ -88,20 +88,20 @@ province_temp = PhotoImage(file = r"Images\colony.png")
 colony = province_temp.subsample(3)
 
 # Non Victory Cards
-silver_card = NonVictory("Silver", 0)
-card_back_card = NonVictory("Card Back", 1)
-vp_plus_card = Victory("VP Plus", 1, 0)
-vp_minus_card = Victory("VP Minus", -1, 0)
+silver_card = NonVictory("Silver", 0, 3)
+card_back_card = NonVictory("Card Back", 1, 0)
 
 # Victory Cards
+vp_plus_card = Victory("VP Plus", 1, 0)
+vp_minus_card = Victory("VP Minus", -1, 0)
 curse_card = Victory("Curse", -1, 0)
 estate_card = Victory("Estate", 1, 2)
 great_hall_card = Victory("Great Hall", 1, 3)
 mill_card = Victory("Mill", 1, 4)
 feodum_card = Victory("Feodum", total_silver, 4)
-silk_road_card = Victory("Silk Road", total_victory, 4)
+silk_road_card = Victory("Silk Road", sr_count, 4)
 castle1_card = Victory("Castle 1", 1, 3)
-castle1_2_card = Victory("Castle 1", 1, 3)
+castle1_2_card = Victory("Castle 2", 1, 3)
 fairgrounds_card = Victory("Fairgrounds", 2, 5)
 distant_lands_card = Victory("Distant Lands", 4, 5)
 gardens_card = Victory("Gardens", total_non_victory, 4)
@@ -146,7 +146,7 @@ def onClick(victory):
         total_cards = math.floor((total_victory+total_non_victory)/10)
         counter.set(counter.get() + total_cards)
     if victory.name == 'Silk Road':
-        counter.set(counter.get() + total_victory)
+        counter.set(counter.get() + sr_count)
     if victory.name == 'Duchy':
         totalduchy1 += 1
     if victory.name == 'Duke':
@@ -178,7 +178,7 @@ def onClickP2(victory):
         total_cards2 = math.floor((total_victory2+total_non_victory2)/10)
         counter2.set(counter2.get() + total_cards2)
     if victory.name == 'Silk Road':
-        counter2.set(counter2.get() + total_victory2)
+        counter2.set(counter2.get() + sr_count2)
     if victory.name == 'Duchy':
         totalduchy1 += 1
     if victory.name == 'Duke':
