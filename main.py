@@ -22,6 +22,8 @@ totalduchy1 = 0
 totalduchy2 = 0
 total_cards = 0
 total_cards2 = 0
+sr_count = 0
+sr_count2 = 0
 total_non_victory = 0
 total_non_victory2 = 0
 total_victory = 0
@@ -121,7 +123,6 @@ colony_card = Victory("Colony", 10, 11)
 def nvClick(nonvictory):
     global total_silver
     global feodum_count
-    global total_victory
     global total_non_victory
     if nonvictory.name == 'Silver':
         total_silver += 1
@@ -133,14 +134,16 @@ def onClick(victory):
     global total_victory
     global silk_road_count
     global total_cards
+    global sr_count
     counter.set(counter.get() + victory.value)
     if victory.name == 'Feodum':
         counter.set(counter.get() + feodum_count)
     if victory.value >= 0:
+        total_victory += 1
         silk_road_count += 1
-        total_victory = math.floor(silk_road_count / 4)
+        sr_count = math.floor(silk_road_count / 4)
     if victory.name == 'Gardens':
-        total_cards = math.floor((total_victory+total_non_victory)/5)
+        total_cards = math.floor((total_victory+total_non_victory)/10)
         counter.set(counter.get() + total_cards)
     if victory.name == 'Silk Road':
         counter.set(counter.get() + total_victory)
@@ -161,15 +164,19 @@ def nvClickP2(nonvictory):
 def onClickP2(victory):
     global totalduchy2
     global total_victory2
-    global feodum_count2
     global total_silver2
     global silk_road_count2
-    counter2.set(counter2.get() + victory.value + total_non_victory2)
+    global sr_count2
+    counter2.set(counter2.get() + victory.value)
     if victory.name == 'Feodum':
         counter2.set(counter2.get() + feodum_count2)
     if victory.value >= 0:
+        total_victory2 += 1
         silk_road_count2 += 1
-        total_victory2 = math.floor(silk_road_count2 / 4)
+        sr_count2 = math.floor(silk_road_count2 / 4)
+    if victory.name == 'Gardens':
+        total_cards2 = math.floor((total_victory2+total_non_victory2)/10)
+        counter2.set(counter2.get() + total_cards2)
     if victory.name == 'Silk Road':
         counter2.set(counter2.get() + total_victory2)
     if victory.name == 'Duchy':
@@ -245,7 +252,7 @@ Button_colony.place(x=320, y=810)
 
 # P2
 # Non Victory
-Button_silver2 = Button(root, command = lambda: onClickP2(silver_card), image = silver)
+Button_silver2 = Button(root, command = lambda: nvClickP2(silver_card), image = silver)
 Button_card_back2 = Button(root, command = lambda: nvClickP2(card_back_card), image = card_back)
 # Victory
 Button_vp_plus2 = Button(root, command = lambda: onClickP2(vp_plus_card), image = vp_plus)
