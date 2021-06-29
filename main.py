@@ -1,16 +1,16 @@
 from tkinter import *
 import tkinter
 from tkinter import Tk, Canvas
-from Victory import Victory
+from Victory import Victory, NonVictory
 import math
 
 root = Tk()
 root.geometry("1920x1080")
 root.title("Dominion Counter")
-es_temp = PhotoImage(file = r"Images\background.png")
-es = es_temp.zoom(2,2)
-coun = Label(root, image = es)
-coun.place(x=0, y = 0)
+background_temp = PhotoImage(file = r"Images\background.png")
+background = background_temp.zoom(2,2)
+bg_image = Label(root, image = background)
+bg_image.place(x=0, y = 0)
 
 # Totals
 total_silver = 0
@@ -28,6 +28,13 @@ counter2 = tkinter.IntVar()
 
 silver_temp = PhotoImage(file = r"Images\silver.png")
 silver = silver_temp.subsample(5)
+card_back_temp = PhotoImage(file = r"Images\card_back.png")
+card_back = card_back_temp.subsample(5)
+vp_plus_temp = PhotoImage(file = r"Images\vp_plus.png")
+vp_plus = vp_plus_temp.subsample(9)
+vp_minus_temp = PhotoImage(file = r"Images\vp_minus.png")
+vp_minus = vp_minus_temp.subsample(3)
+
 curse_temp = PhotoImage(file = r"Images\curse.png")
 curse = curse_temp.subsample(3)
 estate_temp = PhotoImage(file = r"Images\estate.png")
@@ -36,7 +43,7 @@ great_hall_temp = PhotoImage(file = r"Images\great_hall.png")
 great_hall = great_hall_temp.subsample(3)
 mill_temp = PhotoImage(file = r"Images\mill.png")
 mill = mill_temp.subsample(3)
-feodum_temp = PhotoImage(file = r"Images\feodum.png")
+feodum_temp = PhotoImage(file = r"Images\Feodum.png")
 feodum = feodum_temp.subsample(3)
 silk_road_temp = PhotoImage(file = r"Images\silk_road.png")
 silk_road = silk_road_temp.subsample(3)
@@ -72,7 +79,10 @@ province_temp = PhotoImage(file = r"Images\colony.png")
 colony = province_temp.subsample(3)
 
 # Non Victory Cards
-silver_card = NonVictory("Silver", 0, 0)
+silver_card = NonVictory("Silver", 0)
+card_back_card = NonVictory("Card Back", 1)
+vp_plus_card = NonVictory("VP Plus", 1)
+vp_minus_card = NonVictory("VP Minus", -1)
 
 # Victory Cards
 curse_card = Victory("Curse", -1, 0)
@@ -101,16 +111,18 @@ colony_card = Victory("Colony", 10, 11)
 
 # Functions
 # P1
+def nvClick(nonvictory):
+    global total_silver
+    global feodum_count
+    if nonvictory.name == 'Silver':
+        total_silver += 1
+        feodum_count = math.floor(total_silver / 3)
+
 def onClick(victory):
     global totalduchy1
     global total_victory
-    global feodum_count
-    global total_silver
     global silk_road_count
     counter.set(counter.get() + victory.value)
-    if victory.name == 'Silver':
-        total_silver += 1
-        feodum_count = math.floor(total_silver / 3)
     if victory.name == 'Feodum':
         counter.set(counter.get() + feodum_count)
     if victory.value >= 0:
@@ -123,6 +135,12 @@ def onClick(victory):
     if victory.name == 'Duke':
         counter.set(counter.get() + totalduchy1)
 # P2
+def nvClickP2(nonvictory):
+    global total_silver2
+    global feodum_count2
+    if nonvictory.name == 'Silver':
+        total_silver2 += 1
+        feodum_count2 = math.floor(total_silver2 / 3)
 def onClickP2(victory):
     global totalduchy2
     global total_victory2
@@ -130,9 +148,6 @@ def onClickP2(victory):
     global total_silver2
     global silk_road_count2
     counter2.set(counter2.get() + victory.value)
-    if victory.name == 'Silver':
-        total_silver2 += 1
-        feodum_count2 = math.floor(total_silver2 / 3)
     if victory.name == 'Feodum':
         counter2.set(counter2.get() + feodum_count2)
     if victory.value >= 0:
@@ -154,7 +169,13 @@ counter_2.place(x=1180, y = 0)
 
 # Buttons
 # P1
-Button_silver = Button(root, command = lambda: onClick(silver_card), image = silver)
+# Non Victory
+Button_silver = Button(root, command = lambda: nvClick(silver_card), image = silver)
+Button_card_back = Button(root, command = lambda: nvClick(card_back_card), image = card_back)
+Button_vp_plus = Button(root, command = lambda: nvClick(vp_plus_card), image = vp_plus)
+Button_vp_minus = Button(root, command = lambda: nvClick(vp_minus_card), image = vp_minus)
+
+# Victory
 Button_curse = Button(root, command = lambda: onClick(curse_card), image = curse)
 Button_estate = Button(root, command = lambda: onClick(estate_card), image = estate)
 Button_great_hall = Button(root, command = lambda: onClick(great_hall_card), image = great_hall)
@@ -177,6 +198,8 @@ Button_duke = Button(root, command = lambda: onClick(duke_card), image = duke)
 Button_province = Button(root, command = lambda: onClick(province_card), image = province)
 Button_colony = Button(root, command = lambda: onClick(colony_card), image = colony)
 Button_silver.place(x=347, y=10)
+Button_vp_plus.place(x=0, y=0)
+Button_vp_minus.place(x=100, y=0)
 Button_curse.place(x=20, y=150)
 Button_estate.place(x=170, y=150)
 Button_great_hall.place(x=320, y=150)
@@ -198,13 +221,20 @@ Button_duchy.place(x=770, y=590)
 Button_duke.place(x=20, y=810)
 Button_province.place(x=170, y=810)
 Button_colony.place(x=320, y=810)
+
 # P2
+# Non Victory
 Button_silver2 = Button(root, command = lambda: onClickP2(silver_card), image = silver)
+Button_card_back2 = Button(root, command = lambda: nvClickP2(card_back_card), image = card_back)
+Button_vp_plus2 = Button(root, command = lambda: nvClickP2(vp_plus_card), image = vp_plus)
+Button_vp_minus2 = Button(root, command = lambda: nvClickP2(vp_minus_card), image = vp_minus)
+
+# Victory
 Button_curse2 = Button(root, command = lambda: onClickP2(curse_card), image = curse)
 Button_estate2 = Button(root, command = lambda: onClickP2(estate_card), image = estate)
 Button_great_hall2 = Button(root, command = lambda: onClickP2(great_hall_card), image = great_hall)
 Button_mill2 = Button(root, command = lambda: onClickP2(mill_card), image = mill)
-Button_feodum2 = Button(root, command = lambda: onClickP2(feodum_card), image = feodum)
+Button_feodum = Button(root, command = lambda: onClickP2(feodum_card), image = feodum)
 Button_silk_road2 = Button(root, command = lambda: onClickP2(silk_road_card), image = silk_road)
 Button_castle1_2 = Button(root, command = lambda: onClickP2(castle1_2_card), image = castle)
 Button_fairgrounds2 = Button(root, command = lambda: onClickP2(fairgrounds_card), image = fairgrounds)
@@ -226,7 +256,7 @@ Button_curse2.place(x=1000, y=150)
 Button_estate2.place(x=1150, y=150)
 Button_great_hall2.place(x=1300, y=150)
 Button_mill2.place(x=1450, y=150)
-Button_feodum2.place(x=1600, y=150)
+Button_feodum.place(x=1600, y=150)
 Button_silk_road2.place(x=1750, y=150)
 Button_castle1_2.place(x=1000, y=370)
 Button_fairgrounds2.place(x=1159, y=370)

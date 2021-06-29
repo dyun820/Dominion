@@ -5,7 +5,7 @@ class Victory:
     self.cost = cost
 
 class NonVictory:
-  def __innit__(self, name, value, cost):
+  def __init__(self, name, value):
     self.name = name
     self.value = value
-    self.cost = cost
+    # self.cost = cost
