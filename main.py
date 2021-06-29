@@ -1,7 +1,8 @@
 from tkinter import *
 import tkinter
 from tkinter import Tk, Canvas
-from Victory import Victory, NonVictory
+from Victory import Victory
+from Non_Victory import NonVictory
 import math
 
 root = Tk()
@@ -116,10 +117,12 @@ colony_card = Victory("Colony", 10, 11)
 def nvClick(nonvictory):
     global total_silver
     global feodum_count
+    global total_victory
     if nonvictory.name == 'Silver':
         total_silver += 1
         feodum_count = math.floor(total_silver / 3)
-
+    if nonvictory.name == 'Card Back':
+        total_victory
 def onClick(victory):
     global totalduchy1
     global total_victory
@@ -143,6 +146,8 @@ def nvClickP2(nonvictory):
     if nonvictory.name == 'Silver':
         total_silver2 += 1
         feodum_count2 = math.floor(total_silver2 / 3)
+    if nonvictory.name == 'Card Back':
+        total
 def onClickP2(victory):
     global totalduchy2
     global total_victory2
@@ -164,9 +169,11 @@ def onClickP2(victory):
 
 # Totals
 vp = Label(root, image = vp_symbol)
+vp2 = Label(root, image = vp_symbol)
 counter_1 = Label(root, textvariable = counter, font = 'size, 90')
 counter_2 = Label(root, textvariable = counter2, font = 'size, 90')
 vp.place(x= 120, y = 50)
+vp2.place(x= 1725, y = 50)
 counter_1.place(x=650, y = 10)
 counter_2.place(x=1180, y = 0)
 
@@ -202,7 +209,7 @@ Button_province = Button(root, command = lambda: onClick(province_card), image =
 Button_colony = Button(root, command = lambda: onClick(colony_card), image = colony)
 Button_vp_minus.place(x=50, y=50)
 Button_vp_plus.place(x=185, y=50)
-Button_card_back.place(x=500, y=10)
+Button_card_back.place(x=490, y=10)
 Button_silver.place(x=347, y=10)
 Button_curse.place(x=20, y=150)
 Button_estate.place(x=170, y=150)
@@ -230,10 +237,9 @@ Button_colony.place(x=320, y=810)
 # Non Victory
 Button_silver2 = Button(root, command = lambda: onClickP2(silver_card), image = silver)
 Button_card_back2 = Button(root, command = lambda: nvClickP2(card_back_card), image = card_back)
-Button_vp_plus2 = Button(root, command = lambda: nvClickP2(vp_plus_card), image = vp_plus)
-Button_vp_minus2 = Button(root, command = lambda: nvClickP2(vp_minus_card), image = vp_minus)
-
 # Victory
+Button_vp_plus2 = Button(root, command = lambda: onClickP2(vp_plus_card), image = vp_plus)
+Button_vp_minus2 = Button(root, command = lambda: onClickP2(vp_minus_card), image = vp_minus)
 Button_curse2 = Button(root, command = lambda: onClickP2(curse_card), image = curse)
 Button_estate2 = Button(root, command = lambda: onClickP2(estate_card), image = estate)
 Button_great_hall2 = Button(root, command = lambda: onClickP2(great_hall_card), image = great_hall)
@@ -255,6 +261,9 @@ Button_duchy2 = Button(root, command = lambda: onClickP2(duchy_card), image = du
 Button_duke2 = Button(root, command = lambda: onClickP2(duke_card), image = duke)
 Button_province2 = Button(root, command = lambda: onClickP2(province_card), image = province)
 Button_colony2 = Button(root, command = lambda: onClickP2(colony_card), image = colony)
+Button_vp_minus2.place(x=1650, y=50)
+Button_vp_plus2.place(x=1785, y=50)
+Button_card_back2.place(x=1330, y=10)
 Button_silver2.place(x=1473, y=10)
 Button_curse2.place(x=1000, y=150)
 Button_estate2.place(x=1150, y=150)
