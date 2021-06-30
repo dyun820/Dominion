@@ -2,18 +2,17 @@ from tkinter import *
 import tkinter
 from tkinter import Tk, Canvas
 from victory import Victory
-from castles import Castles
+from castles import Castle
 from non_victory import NonVictory
-
 import math
 
 root = Tk()
 root.geometry("1920x1080")
 root.title("Dominion Counter")
-background_temp = PhotoImage(file = r"Images\background.png")
-background = background_temp.zoom(2,2)
-bg_image = Label(root, image = background)
-bg_image.place(x=0, y = 0)
+background_temp = PhotoImage(file=r"Images\background.png")
+background = background_temp.zoom(2, 2)
+bg_image = Label(root, image=background)
+bg_image.place(x=0, y=0)
 
 # Totals
 total_silver = 0
@@ -35,58 +34,58 @@ silk_road_count2 = 0
 counter = tkinter.IntVar()
 counter2 = tkinter.IntVar()
 
-silver_temp = PhotoImage(file = r"Images\silver.png")
+silver_temp = PhotoImage(file=r"Images\silver.png")
 silver = silver_temp.subsample(5)
-card_back_temp = PhotoImage(file = r"Images\card_back.png")
+card_back_temp = PhotoImage(file=r"Images\card_back.png")
 card_back = card_back_temp.subsample(3)
-vp_symbol_temp = PhotoImage(file = r"Images\vp.png")
-vp_symbol = vp_symbol_temp.zoom(3,3)
+vp_symbol_temp = PhotoImage(file=r"Images\vp.png")
+vp_symbol = vp_symbol_temp.zoom(3, 3)
 
-vp_plus_temp = PhotoImage(file = r"Images\vp_plus.png")
+vp_plus_temp = PhotoImage(file=r"Images\vp_plus.png")
 vp_plus = vp_plus_temp.subsample(14)
-vp_minus_temp = PhotoImage(file = r"Images\vp_minus.png")
+vp_minus_temp = PhotoImage(file=r"Images\vp_minus.png")
 vp_minus = vp_minus_temp.subsample(5)
-curse_temp = PhotoImage(file = r"Images\curse.png")
+curse_temp = PhotoImage(file=r"Images\curse.png")
 curse = curse_temp.subsample(3)
-estate_temp = PhotoImage(file = r"Images\estate.png")
+estate_temp = PhotoImage(file=r"Images\estate.png")
 estate = estate_temp.subsample(3)
-great_hall_temp = PhotoImage(file = r"Images\great_hall.png")
+great_hall_temp = PhotoImage(file=r"Images\great_hall.png")
 great_hall = great_hall_temp.subsample(3)
-mill_temp = PhotoImage(file = r"Images\mill.png")
+mill_temp = PhotoImage(file=r"Images\mill.png")
 mill = mill_temp.subsample(3)
-feodum_temp = PhotoImage(file = r"Images\Feodum.png")
+feodum_temp = PhotoImage(file=r"Images\Feodum.png")
 feodum = feodum_temp.subsample(3)
-silk_road_temp = PhotoImage(file = r"Images\silk_road.png")
+silk_road_temp = PhotoImage(file=r"Images\silk_road.png")
 silk_road = silk_road_temp.subsample(3)
-castle_temp = PhotoImage(file = r"Images\castle1.png")
+castle_temp = PhotoImage(file=r"Images\castle1.png")
 castle = castle_temp.subsample(3)
-fairgrounds_temp = PhotoImage(file = r"Images\fairgrounds.png")
+fairgrounds_temp = PhotoImage(file=r"Images\fairgrounds.png")
 fairgrounds = fairgrounds_temp.subsample(3)
-distant_lands_temp = PhotoImage(file = r"Images\distant_lands.png")
+distant_lands_temp = PhotoImage(file=r"Images\distant_lands.png")
 distant_lands = distant_lands_temp.subsample(3)
-gardens_temp = PhotoImage(file = r"Images\gardens.png")
+gardens_temp = PhotoImage(file=r"Images\gardens.png")
 gardens = gardens_temp.subsample(3)
-cemetery_temp = PhotoImage(file = r"Images\cemetery.png")
+cemetery_temp = PhotoImage(file=r"Images\cemetery.png")
 cemetery = cemetery_temp.subsample(3)
-tunnel_temp = PhotoImage(file = r"Images\tunnel.png")
+tunnel_temp = PhotoImage(file=r"Images\tunnel.png")
 tunnel = tunnel_temp.subsample(3)
-farmland_temp = PhotoImage(file = r"Images\farmland.png")
+farmland_temp = PhotoImage(file=r"Images\farmland.png")
 farmland = farmland_temp.subsample(3)
-dame_josephine_temp = PhotoImage(file = r"Images\dame_josephine.png")
+dame_josephine_temp = PhotoImage(file=r"Images\dame_josephine.png")
 dame_josephine = dame_josephine_temp.subsample(3)
-harem_temp = PhotoImage(file = r"Images\harem.png")
+harem_temp = PhotoImage(file=r"Images\harem.png")
 harem = harem_temp.subsample(3)
-island_temp = PhotoImage(file = r"Images\island.png")
+island_temp = PhotoImage(file=r"Images\island.png")
 island = island_temp.subsample(3)
-nobles_temp = PhotoImage(file = r"Images\nobles.png")
+nobles_temp = PhotoImage(file=r"Images\nobles.png")
 nobles = nobles_temp.subsample(3)
-duchy_temp = PhotoImage(file = r"Images\duchy.png")
+duchy_temp = PhotoImage(file=r"Images\duchy.png")
 duchy = duchy_temp.subsample(3)
-duke_temp = PhotoImage(file = r"Images\duke.png")
+duke_temp = PhotoImage(file=r"Images\duke.png")
 duke = duke_temp.subsample(3)
-province_temp = PhotoImage(file = r"Images\province.png")
+province_temp = PhotoImage(file=r"Images\province.png")
 province = province_temp.subsample(3)
-province_temp = PhotoImage(file = r"Images\colony.png")
+province_temp = PhotoImage(file=r"Images\colony.png")
 colony = province_temp.subsample(3)
 
 # Non Victory Cards
@@ -102,8 +101,8 @@ great_hall_card = Victory("Great Hall", 1, 3)
 mill_card = Victory("Mill", 1, 4)
 feodum_card = Victory("Feodum", total_silver, 4)
 silk_road_card = Victory("Silk Road", sr_count, 4)
-
-# castle1_2_card = Victory("Castle 2", 1, 3)
+castle1_card = Castle("Humble Castle 1", 1, 3)
+castle1_2_card = Victory("Castle 2", 1, 3)
 fairgrounds_card = Victory("Fairgrounds", 2, 5)
 distant_lands_card = Victory("Distant Lands", 4, 5)
 gardens_card = Victory("Gardens", total_non_victory, 4)
@@ -119,14 +118,16 @@ duke_card = Victory("Duke", totalduchy1, 5)
 province_card = Victory("Province", 6, 8)
 colony_card = Victory("Colony", 10, 11)
 
-
 # Functions
 # P1
 total_castles = 0
 
+
 def csClick(castles):
     global total_castles
     total_castles += 1
+
+
 def nvClick(nonvictory):
     global total_silver
     global feodum_count
@@ -136,6 +137,8 @@ def nvClick(nonvictory):
         feodum_count = math.floor(total_silver / 3)
     if nonvictory.name == 'Card Back':
         total_non_victory += 1
+
+
 def onClick(victory):
     global totalduchy1
     global total_victory
@@ -150,7 +153,7 @@ def onClick(victory):
         silk_road_count += 1
         sr_count = math.floor(silk_road_count / 4)
     if victory.name == 'Gardens':
-        total_cards = math.floor((total_victory+total_non_victory)/10)
+        total_cards = math.floor((total_victory + total_non_victory) / 10)
         counter.set(counter.get() + total_cards)
     if victory.name == 'Silk Road':
         counter.set(counter.get() + sr_count)
@@ -158,6 +161,8 @@ def onClick(victory):
         totalduchy1 += 1
     if victory.name == 'Duke':
         counter.set(counter.get() + totalduchy1)
+
+
 # P2
 def nvClickP2(nonvictory):
     global total_silver2
@@ -168,6 +173,8 @@ def nvClickP2(nonvictory):
         feodum_count2 = math.floor(total_silver2 / 3)
     if nonvictory.name == 'Card Back':
         total_non_victory2 += 1
+
+
 def onClickP2(victory):
     global totalduchy2
     global total_victory2
@@ -182,7 +189,7 @@ def onClickP2(victory):
         silk_road_count2 += 1
         sr_count2 = math.floor(silk_road_count2 / 4)
     if victory.name == 'Gardens':
-        total_cards2 = math.floor((total_victory2+total_non_victory2)/10)
+        total_cards2 = math.floor((total_victory2 + total_non_victory2) / 10)
         counter2.set(counter2.get() + total_cards2)
     if victory.name == 'Silk Road':
         counter2.set(counter2.get() + sr_count2)
@@ -191,46 +198,47 @@ def onClickP2(victory):
     if victory.name == 'Duke':
         counter2.set(counter2.get() + totalduchy1)
 
+
 # Totals
-vp = Label(root, image = vp_symbol, borderwidth = 0)
-vp2 = Label(root, image = vp_symbol, borderwidth = 0)
-counter_1 = Label(root, textvariable = counter, font = 'size, 90', borderwidth = 0)
-counter_2 = Label(root, textvariable = counter2, font = 'size, 90', borderwidth = 0)
-vp.place(x= 120, y = 50)
-vp2.place(x= 1725, y = 50)
-counter_1.place(x=650, y = 10)
-counter_2.place(x=1180, y = 0)
+vp = Label(root, image=vp_symbol, borderwidth=0)
+vp2 = Label(root, image=vp_symbol, borderwidth=0)
+counter_1 = Label(root, textvariable=counter, font='size, 90', borderwidth=0)
+counter_2 = Label(root, textvariable=counter2, font='size, 90', borderwidth=0)
+vp.place(x=120, y=50)
+vp2.place(x=1725, y=50)
+counter_1.place(x=650, y=10)
+counter_2.place(x=1180, y=0)
 
 # Buttons
 # P1
 # Non Victory
-Button_silver = Button(root, command = lambda: nvClick(silver_card), image = silver, borderwidth = 0)
-Button_card_back = Button(root, command = lambda: nvClick(card_back_card), image = card_back, borderwidth = 0)
-Button_vp_plus = Button(root, command = lambda: onClick(vp_plus_card), image = vp_plus, borderwidth = 0)
-Button_vp_minus = Button(root, command = lambda: onClick(vp_minus_card), image = vp_minus, borderwidth = 0)
+Button_silver = Button(root, command=lambda: nvClick(silver_card), image=silver, borderwidth=0)
+Button_card_back = Button(root, command=lambda: nvClick(card_back_card), image=card_back, borderwidth=0)
+Button_vp_plus = Button(root, command=lambda: onClick(vp_plus_card), image=vp_plus, borderwidth=0)
+Button_vp_minus = Button(root, command=lambda: onClick(vp_minus_card), image=vp_minus, borderwidth=0)
 
 # Victory
-Button_curse = Button(root, command = lambda: onClick(curse_card), image = curse, borderwidth = 0)
-Button_estate = Button(root, command = lambda: onClick(estate_card), image = estate, borderwidth = 0)
-Button_great_hall = Button(root, command = lambda: onClick(great_hall_card), image = great_hall, borderwidth = 0)
-Button_mill = Button(root, command = lambda: onClick(mill_card), image = mill, borderwidth = 0)
-Button_feodum = Button(root, command = lambda: onClick(feodum_card), image = feodum, borderwidth = 0)
-Button_silk_road = Button(root, command = lambda: onClick(silk_road_card), image = silk_road, borderwidth = 0)
-Button_castle1 = Button(root, command = lambda: csClick(castle1_card), image = castle, borderwidth = 0)
-Button_fairgrounds = Button(root, command = lambda: onClick(fairgrounds_card), image = fairgrounds, borderwidth = 0)
-Button_distant_lands = Button(root, command = lambda: onClick(distant_lands_card), image = distant_lands, borderwidth = 0)
-Button_gardens = Button(root, command = lambda: onClick(gardens_card), image = gardens, borderwidth = 0)
-Button_cemetery = Button(root, command = lambda: onClick(cemetery_card), image = cemetery, borderwidth = 0)
-Button_tunnel = Button(root, command = lambda: onClick(tunnel_card), image = tunnel, borderwidth = 0)
-Button_farmland = Button(root, command = lambda: onClick(farmland_card), image = farmland, borderwidth = 0)
-Button_dame_josephine = Button(root, command = lambda: onClick(dame_josephine_card), image = dame_josephine, borderwidth = 0)
-Button_harem = Button(root, command = lambda: onClick(harem_card), image = harem, borderwidth = 0)
-Button_island = Button(root, command = lambda: onClick(island_card), image = island, borderwidth = 0)
-Button_nobles = Button(root, command = lambda: onClick(nobles_card), image = nobles, borderwidth = 0)
-Button_duchy = Button(root, command = lambda: onClick(duchy_card), image = duchy, borderwidth = 0)
-Button_duke = Button(root, command = lambda: onClick(duke_card), image = duke, borderwidth = 0)
-Button_province = Button(root, command = lambda: onClick(province_card), image = province, borderwidth = 0)
-Button_colony = Button(root, command = lambda: onClick(colony_card), image = colony, borderwidth = 0)
+Button_curse = Button(root, command=lambda: onClick(curse_card), image=curse, borderwidth=0)
+Button_estate = Button(root, command=lambda: onClick(estate_card), image=estate, borderwidth=0)
+Button_great_hall = Button(root, command=lambda: onClick(great_hall_card), image=great_hall, borderwidth=0)
+Button_mill = Button(root, command=lambda: onClick(mill_card), image=mill, borderwidth=0)
+Button_feodum = Button(root, command=lambda: onClick(feodum_card), image=feodum, borderwidth=0)
+Button_silk_road = Button(root, command=lambda: onClick(silk_road_card), image=silk_road, borderwidth=0)
+Button_castle1 = Button(root, command=lambda: csClick(castle1_card), image=castle, borderwidth=0)
+Button_fairgrounds = Button(root, command=lambda: onClick(fairgrounds_card), image=fairgrounds, borderwidth=0)
+Button_distant_lands = Button(root, command=lambda: onClick(distant_lands_card), image=distant_lands, borderwidth=0)
+Button_gardens = Button(root, command=lambda: onClick(gardens_card), image=gardens, borderwidth=0)
+Button_cemetery = Button(root, command=lambda: onClick(cemetery_card), image=cemetery, borderwidth=0)
+Button_tunnel = Button(root, command=lambda: onClick(tunnel_card), image=tunnel, borderwidth=0)
+Button_farmland = Button(root, command=lambda: onClick(farmland_card), image=farmland, borderwidth=0)
+Button_dame_josephine = Button(root, command=lambda: onClick(dame_josephine_card), image=dame_josephine, borderwidth=0)
+Button_harem = Button(root, command=lambda: onClick(harem_card), image=harem, borderwidth=0)
+Button_island = Button(root, command=lambda: onClick(island_card), image=island, borderwidth=0)
+Button_nobles = Button(root, command=lambda: onClick(nobles_card), image=nobles, borderwidth=0)
+Button_duchy = Button(root, command=lambda: onClick(duchy_card), image=duchy, borderwidth=0)
+Button_duke = Button(root, command=lambda: onClick(duke_card), image=duke, borderwidth=0)
+Button_province = Button(root, command=lambda: onClick(province_card), image=province, borderwidth=0)
+Button_colony = Button(root, command=lambda: onClick(colony_card), image=colony, borderwidth=0)
 Button_vp_minus.place(x=50, y=50)
 Button_vp_plus.place(x=185, y=50)
 Button_card_back.place(x=490, y=10)
@@ -259,32 +267,32 @@ Button_colony.place(x=320, y=810)
 
 # P2
 # Non Victory
-Button_silver2 = Button(root, command = lambda: nvClickP2(silver_card), image = silver, borderwidth = 0)
-Button_card_back2 = Button(root, command = lambda: nvClickP2(card_back_card), image = card_back, borderwidth = 0)
+Button_silver2 = Button(root, command=lambda: nvClickP2(silver_card), image=silver, borderwidth=0)
+Button_card_back2 = Button(root, command=lambda: nvClickP2(card_back_card), image=card_back, borderwidth=0)
 # Victory
-Button_vp_plus2 = Button(root, command = lambda: onClickP2(vp_plus_card), image = vp_plus, borderwidth = 0)
-Button_vp_minus2 = Button(root, command = lambda: onClickP2(vp_minus_card), image = vp_minus, borderwidth = 0)
-Button_curse2 = Button(root, command = lambda: onClickP2(curse_card), image = curse, borderwidth = 0)
-Button_estate2 = Button(root, command = lambda: onClickP2(estate_card), image = estate, borderwidth = 0)
-Button_great_hall2 = Button(root, command = lambda: onClickP2(great_hall_card), image = great_hall, borderwidth = 0)
-Button_mill2 = Button(root, command = lambda: onClickP2(mill_card), image = mill, borderwidth = 0)
-Button_feodum = Button(root, command = lambda: onClickP2(feodum_card), image = feodum, borderwidth = 0)
-Button_silk_road2 = Button(root, command = lambda: onClickP2(silk_road_card), image = silk_road, borderwidth = 0)
-Button_castle1_2 = Button(root, command = lambda: onClickP2(castle1_2_card), image = castle, borderwidth = 0)
-Button_fairgrounds2 = Button(root, command = lambda: onClickP2(fairgrounds_card), image = fairgrounds, borderwidth = 0)
-Button_distant_lands2 = Button(root, command = lambda: onClickP2(distant_lands_card), image = distant_lands, borderwidth = 0)
-Button_gardens2 = Button(root, command = lambda: onClickP2(gardens_card), image = gardens, borderwidth = 0)
-Button_cemetery2 = Button(root, command = lambda: onClickP2(cemetery_card), image = cemetery, borderwidth = 0)
-Button_tunnel2 = Button(root, command = lambda: onClickP2(tunnel_card), image = tunnel, borderwidth = 0)
-Button_farmland2 = Button(root, command = lambda: onClickP2(farmland_card), image = farmland, borderwidth = 0)
-Button_dame_josephine2 = Button(root, command = lambda: onClickP2(dame_josephine_card), image = dame_josephine, borderwidth = 0)
-Button_harem2 = Button(root, command = lambda: onClickP2(harem_card), image = harem, borderwidth = 0)
-Button_island2 = Button(root, command = lambda: onClickP2(island_card), image = island, borderwidth = 0)
-Button_nobles2 = Button(root, command = lambda: onClickP2(nobles_card), image = nobles, borderwidth = 0)
-Button_duchy2 = Button(root, command = lambda: onClickP2(duchy_card), image = duchy, borderwidth = 0)
-Button_duke2 = Button(root, command = lambda: onClickP2(duke_card), image = duke, borderwidth = 0)
-Button_province2 = Button(root, command = lambda: onClickP2(province_card), image = province, borderwidth = 0)
-Button_colony2 = Button(root, command = lambda: onClickP2(colony_card), image = colony, borderwidth = 0)
+Button_vp_plus2 = Button(root, command=lambda: onClickP2(vp_plus_card), image=vp_plus, borderwidth=0)
+Button_vp_minus2 = Button(root, command=lambda: onClickP2(vp_minus_card), image=vp_minus, borderwidth=0)
+Button_curse2 = Button(root, command=lambda: onClickP2(curse_card), image=curse, borderwidth=0)
+Button_estate2 = Button(root, command=lambda: onClickP2(estate_card), image=estate, borderwidth=0)
+Button_great_hall2 = Button(root, command=lambda: onClickP2(great_hall_card), image=great_hall, borderwidth=0)
+Button_mill2 = Button(root, command=lambda: onClickP2(mill_card), image=mill, borderwidth=0)
+Button_feodum = Button(root, command=lambda: onClickP2(feodum_card), image=feodum, borderwidth=0)
+Button_silk_road2 = Button(root, command=lambda: onClickP2(silk_road_card), image=silk_road, borderwidth=0)
+Button_castle1_2 = Button(root, command=lambda: onClickP2(castle1_2_card), image=castle, borderwidth=0)
+Button_fairgrounds2 = Button(root, command=lambda: onClickP2(fairgrounds_card), image=fairgrounds, borderwidth=0)
+Button_distant_lands2 = Button(root, command=lambda: onClickP2(distant_lands_card), image=distant_lands, borderwidth=0)
+Button_gardens2 = Button(root, command=lambda: onClickP2(gardens_card), image=gardens, borderwidth=0)
+Button_cemetery2 = Button(root, command=lambda: onClickP2(cemetery_card), image=cemetery, borderwidth=0)
+Button_tunnel2 = Button(root, command=lambda: onClickP2(tunnel_card), image=tunnel, borderwidth=0)
+Button_farmland2 = Button(root, command=lambda: onClickP2(farmland_card), image=farmland, borderwidth=0)
+Button_dame_josephine2 = Button(root, command=lambda: onClickP2(dame_josephine_card), image=dame_josephine, borderwidth=0)
+Button_harem2 = Button(root, command=lambda: onClickP2(harem_card), image=harem, borderwidth=0)
+Button_island2 = Button(root, command=lambda: onClickP2(island_card), image=island, borderwidth=0)
+Button_nobles2 = Button(root, command=lambda: onClickP2(nobles_card), image=nobles, borderwidth=0)
+Button_duchy2 = Button(root, command=lambda: onClickP2(duchy_card), image=duchy, borderwidth=0)
+Button_duke2 = Button(root, command=lambda: onClickP2(duke_card), image=duke, borderwidth=0)
+Button_province2 = Button(root, command=lambda: onClickP2(province_card), image=province, borderwidth=0)
+Button_colony2 = Button(root, command=lambda: onClickP2(colony_card), image=colony, borderwidth=0)
 Button_vp_minus2.place(x=1650, y=50)
 Button_vp_plus2.place(x=1785, y=50)
 Button_card_back2.place(x=1330, y=10)
@@ -311,7 +319,7 @@ Button_duke2.place(x=1000, y=810)
 Button_province2.place(x=1150, y=810)
 Button_colony2.place(x=1300, y=810)
 
-can = Canvas(root, bg = 'black', height = 1080, width = 1)
-can.place(relx = 0.5, rely = 0.5, anchor = CENTER)
+can = Canvas(root, bg='black', height=1080, width=1)
+can.place(relx=0.5, rely=0.5, anchor=CENTER)
 
 root.mainloop()

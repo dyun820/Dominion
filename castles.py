@@ -1,11 +1,11 @@
-class Castles:
+class Castle:
     def __init__(self, name, value, cost):
         self.name = name
         self.value = value
         self.cost = cost
 
 
-castle1_card = Castles("Humble Castle 1", 1, 3)
+castle1_card = Castle("Humble Castle 1", 1, 3)
 # castle2_card = Castles("Crumbling Castle 1", 1, 4)
 # castle3_card = Castles("Small Castle 1", 2, 5)
 # castle4_card = Castles("HauntedCastle 1", 2, 6)
